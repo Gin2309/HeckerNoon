@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "IBM Plex Mono Regular";
+  src: local("IBM Plex Mono Regular"),
+    url("../public/font/IBMPlexMono-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
