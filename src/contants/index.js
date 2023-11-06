@@ -50,6 +50,10 @@ export const roomLS = [
     user: "Ulrik Lykke",
     tagname: "@ulriklykke",
     banner: banner1,
+    rowStart: 1,
+    colStart: 1,
+    rowEnd: 2,
+    colEnd: 4,
   },
   {
     id: 2,
@@ -58,6 +62,10 @@ export const roomLS = [
     user: "Scott D. Clary",
     tagname: "@scottdclary",
     banner: banner2,
+    rowStart: 1,
+    colStart: 4,
+    rowEnd: 2,
+    colEnd: 7,
   },
   {
     id: 3,
@@ -66,6 +74,10 @@ export const roomLS = [
     user: "HackerNoon Product Updates",
     tagname: "@product",
     banner: banner3,
+    rowStart: 2,
+    colStart: 1,
+    rowEnd: 3,
+    colEnd: 3,
   },
   {
     id: 4,
@@ -74,6 +86,10 @@ export const roomLS = [
     user: "Andrey Mikheev",
     tagname: "@solverit",
     banner: banner4,
+    rowStart: 2,
+    colStart: 3,
+    rowEnd: 3,
+    colEnd: 5,
   },
   {
     id: 5,
@@ -82,5 +98,9 @@ export const roomLS = [
     user: "HackerNoon Writing Contests",
     tagname: "@content",
     banner: banner5,
+    rowStart: 2,
+    colStart: 5,
+    rowEnd: 3,
+    colEnd: 7,
   },
 ];
