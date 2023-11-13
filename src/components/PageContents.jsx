@@ -3,24 +3,6 @@ import { news } from "../contants";
 
 const PageContents = () => (
   <>
-<<<<<<< HEAD
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-[#131513] grid grid-cols-4 grid-rows-2 gap-4 ">
-        {news.map((item) => (
-          <div key={item.id}>
-            <h1 className="font-bold text-[20px] text-[#C1CAD4]">
-              {item.title}
-            </h1>
-            <img src={item.banner} alt="" className="h-[200px]" />
-            <div className="p-[20px]">
-              <p className="text-[#00FF00]">{item.tagname}</p>
-              <h1 className="text-[#C1CAD4] font-bold text-[13px]">
-                {item.user}
-              </h1>
-            </div>
-          </div>
-        ))}
-=======
     <div className="bg-[#131513] grid grid-cols-6 grid-rows-2 gap-1 ">
       {/* Box 1 */}
       <div className="row-start-1 row-end-2 col-start-1 col-end-4 border-[2px] border-[#ccc]">
@@ -131,7 +113,6 @@ const PageContents = () => (
             {news[4].user}
           </h1>
         </div>
->>>>>>> 51a4a7147a59c168ebe89c5e1c507c09fd2f312b
       </div>
     </div>
   </>
