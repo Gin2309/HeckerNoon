@@ -6,7 +6,7 @@ const Root = () => (
   <>
     <Navbar />
 
-    <div id="detail" className="bg-black">
+    <div className="bg-[#212428]">
       <Outlet />
     </div>
 

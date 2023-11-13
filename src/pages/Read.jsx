@@ -1,10 +1,13 @@
 import React from "react";
-import { news } from "../contants";
+// import { news } from "../contants";
+import { Link } from "react-router-dom";
 
-const Read = () => {
+const Read = ({ news }) => {
   const blockchainArticles = news.filter(
     (news) => news.category === "blockchain"
   );
+
+  // console.log(news[0].id);
 
   const securityArticles = news.filter((news) => news.category === "security");
 
@@ -20,11 +23,12 @@ const Read = () => {
             </h1>
             <div className="flex flex-wrap">
               {blockchainArticles.map((item) => (
-                <div
-                  className=" border-[2px] border-[#3C3C3B] w-[380px] m-[10px]"
+                <Link
+                  to={`/read/${item.id}`}
+                  className=" border-[2px] border-[#3C3C3B] w-[31.7%] m-[10px]"
                   key={item.id}
                 >
-                  <h1 className="font-bold text-[20px] text-[#C1CAD4] h-[100px] pl-[20px] pt-[5px]">
+                  <h1 className="font-bold text-[20px] text-[#C1CAD4] h-[100px] px-[20px] pt-[5px]">
                     {item.title}
                   </h1>
                   <div className="relative ">
@@ -43,10 +47,11 @@ const Read = () => {
                       {item.user}
                     </h1>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
+
           {/* box 2 */}
           <div>
             <h1 className="uppercase text-[#F6F7F9] text-[24px] font-bold text-center py-[20px]">
@@ -54,11 +59,12 @@ const Read = () => {
             </h1>
             <div className="flex flex-wrap">
               {securityArticles.map((item) => (
-                <div
-                  className=" border-[2px] border-[#3C3C3B] w-[380px] m-[10px]"
+                <Link
+                  to={`/read/${item.id}`}
+                  className=" border-[2px] border-[#3C3C3B] w-[31.7%] m-[10px]"
                   key={item.id}
                 >
-                  <h1 className="font-bold text-[20px] text-[#C1CAD4] h-[100px] pl-[20px] pt-[5px]">
+                  <h1 className="font-bold text-[20px] text-[#C1CAD4] h-[100px] px-[20px] pt-[5px]">
                     {item.title}
                   </h1>
                   <div className="relative ">
@@ -77,7 +83,7 @@ const Read = () => {
                       {item.user}
                     </h1>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -88,18 +94,19 @@ const Read = () => {
             </h1>
             <div className="flex flex-wrap">
               {financeArticles.map((item) => (
-                <div
-                  className=" border-[2px] border-[#3C3C3B] w-[380px] m-[10px]"
+                <Link
+                  to={`/read/${item.id}`}
+                  className=" border-[2px] border-[#3C3C3B] w-[31.7%] m-[10px] group"
                   key={item.id}
                 >
-                  <h1 className="font-bold text-[20px] text-[#C1CAD4] h-[100px] pl-[20px] pt-[5px]">
+                  <h1 className="font-bold text-[20px] text-[#C1CAD4] h-[100px] px-[20px] pt-[5px] group-hover:bg-[red]">
                     {item.title}
                   </h1>
                   <div className="relative ">
                     <img
                       src={item.banner}
                       alt=""
-                      className="object-cover h-[200px] w-full"
+                      className="object-cover h-[200px] w-full hover:scale-125"
                     />
                     <button className="absolute right-[20px] bottom-[20px] text-[#C1CAD4] font-bold hover:text-[#3C3C3B] p-[10px] content-center bg-[#131513] hover:bg-[#00FF00] border-[3px] border-[#C1CAD4] hover:border-[#3C3C3B]">
                       {item.hastag}
@@ -111,7 +118,7 @@ const Read = () => {
                       {item.user}
                     </h1>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
