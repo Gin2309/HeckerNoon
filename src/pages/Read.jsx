@@ -1,8 +1,13 @@
 import React from "react";
 import { news } from "../contants";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 const Read = (news) => {
+=======
+
+const Read = () => {
+>>>>>>> 51a4a7147a59c168ebe89c5e1c507c09fd2f312b
   const blockchainArticles = news.filter(
     (news) => news.category === "blockchain"
   );
@@ -15,7 +20,11 @@ const Read = (news) => {
       <div className="bg-[#212428] pb-[70px]">
         <div className="max-w-[85%] m-[auto]">
           {/* box 1 */}
+<<<<<<< HEAD
           <Link to={`/read/${news.id}`}>
+=======
+          <div>
+>>>>>>> 51a4a7147a59c168ebe89c5e1c507c09fd2f312b
             <h1 className="uppercase text-[#F6F7F9] text-[24px] font-bold text-center py-[20px]">
               blockchain
             </h1>
@@ -47,7 +56,11 @@ const Read = (news) => {
                 </div>
               ))}
             </div>
+<<<<<<< HEAD
           </Link>
+=======
+          </div>
+>>>>>>> 51a4a7147a59c168ebe89c5e1c507c09fd2f312b
           {/* box 2 */}
           <div>
             <h1 className="uppercase text-[#F6F7F9] text-[24px] font-bold text-center py-[20px]">
