@@ -1,7 +1,8 @@
 import React from "react";
 import { news } from "../contants";
+import { Link } from "react-router-dom";
 
-const Read = () => {
+const Read = (news) => {
   const blockchainArticles = news.filter(
     (news) => news.category === "blockchain"
   );
@@ -14,7 +15,7 @@ const Read = () => {
       <div className="bg-[#212428] pb-[70px]">
         <div className="max-w-[85%] m-[auto]">
           {/* box 1 */}
-          <div>
+          <Link to={`/read/${news.id}`}>
             <h1 className="uppercase text-[#F6F7F9] text-[24px] font-bold text-center py-[20px]">
               blockchain
             </h1>
@@ -46,7 +47,7 @@ const Read = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Link>
           {/* box 2 */}
           <div>
             <h1 className="uppercase text-[#F6F7F9] text-[24px] font-bold text-center py-[20px]">

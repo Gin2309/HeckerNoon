@@ -1,11 +1,11 @@
 import React from "react";
-import { roomLS } from "../contants";
+import { news } from "../contants";
 
 const PageContents = () => (
   <>
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-[#131513] grid grid-cols-4 grid-rows-2 gap-4 ">
-        {roomLS.map((item) => (
+        {news.map((item) => (
           <div key={item.id}>
             <h1 className="font-bold text-[20px] text-[#C1CAD4]">
               {item.title}

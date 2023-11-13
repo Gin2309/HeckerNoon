@@ -42,7 +42,7 @@ export const mainMenu = [
   },
 ];
 
-export const roomLS = [
+export const news = [
   {
     id: 1,
     title: "Bitcoin's Moment in the Sun is Coming ",
