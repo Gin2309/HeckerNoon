@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [email, setEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
+
   return (
     <>
       <div className="py-[100px]">
@@ -12,11 +15,15 @@ const Register = () => {
                 type="email"
                 placeholder="Email"
                 className="p-[8px] rounded-md hover:shadow-lg "
+                value={email}
+                onClick={(event) => setEmail(event.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
                 className="p-[8px] rounded-md hover:shadow-lg my-[25px]"
+                value={password}
+                onClick={(event) => setPassword(event.target.value)}
               />
               <input
                 type="password"
