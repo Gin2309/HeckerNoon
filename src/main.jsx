@@ -4,7 +4,7 @@ import Root from "./Root.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import PageContents from "./components/PageContents.jsx";
-import { Read, Write, NewsDetail } from "./pages";
+import { Read, Write, NewsDetail, Login, Register } from "./pages";
 import { news } from "./contants/index.js";
 
 const router = createBrowserRouter([
@@ -31,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "read/:id",
         element: <NewsDetail news={news} />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
