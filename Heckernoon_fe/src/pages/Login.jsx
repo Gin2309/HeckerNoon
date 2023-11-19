@@ -1,36 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginApi } from "../service/UserSevices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
+  const { login } = useContext(UserContext);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadApi, setLoadApi] = useState(false);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token");
+  //   if (token) {
+  //     navigate("/");
+  //   }
+  // }, []);
+
   const handleLogin = async () => {
     if (!email || !password) {
       setError("Email/Password is required");
       return;
     }
-    // let res = await loginApi(email, password);
-    // if (res && res.token) {
-    //   localStorage.setItem("token", res.token);
-    // } else {
-    //   if (res && res.status === 400) {
-    //     alert(res.data.error);
-    //     toast.error(res.data.error);
-    //   }
-    // }
 
     try {
       setLoadApi(true);
       let res = await loginApi(email, password);
       if (res && res.token) {
-        localStorage.setItem("token", res.token);
+        login(email, res.token);
+        // localStorage.setItem("email", JSON.stringify(res.email));
         navigate("/");
       } else {
         if (res && res.status === 400) {
@@ -58,6 +60,7 @@ const Login = () => {
               <h1 className="m-[5px]">eve.holt@reqres.in</h1>
               <input
                 type="email"
+                name="email"
                 placeholder="Email"
                 className="p-[8px] rounded-md hover:shadow-lg "
                 value={email}
@@ -65,6 +68,7 @@ const Login = () => {
               />
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 className="p-[8px] rounded-md hover:shadow-lg my-[25px]"
                 value={password}
