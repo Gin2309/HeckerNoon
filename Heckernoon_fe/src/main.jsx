@@ -6,8 +6,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import PageContents from "./components/PageContents.jsx";
 import { Read, Write, NewsDetail, Login, Register, Admin } from "./pages";
 import { news } from "./contants/index.js";
-import { UserProvider } from "./context/UserContext.jsx";
-// import UserProvider from "./context/UserProvider.jsx";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,8 +52,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <UserProvider>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </UserProvider>
+    </Provider>
   </React.StrictMode>
 );
