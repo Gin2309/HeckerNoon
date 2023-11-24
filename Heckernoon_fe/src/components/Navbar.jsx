@@ -1,20 +1,26 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { mainMenu } from "../contants";
 import { bell, logo } from "../assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { UserContext } from "../context/UserContext";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserLogout } from "../redux/slices/userSlice";
+import { handleRefresh } from "../redux/action/userAction";
 
 const Navbar = () => {
-  const { logout, user } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const account = useSelector((state) => state.account);
 
-  const navigate = useNavigate();
-
-  const handleLogut = () => {
-    logout();
-    navigate("/");
+  const handleLogout = () => {
+    dispatch(fetchUserLogout());
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      dispatch(handleRefresh());
+    }
+  }, []);
 
   return (
     <>
@@ -31,7 +37,7 @@ const Navbar = () => {
         </Link>
         <div className="self-center  w-[30%] flex-row-reverse flex ">
           <div className="my-[auto]">
-            {user && user.auth === true && (
+            {account && account.auth === true && (
               <div className="relative group">
                 <Link to="/admin">
                   <FontAwesomeIcon icon={faUser} className=" mr-[15px]" />
@@ -39,7 +45,7 @@ const Navbar = () => {
                 <div className="hidden absolute group-hover:block top-[12px] mt-[30px] right-0 ">
                   <ul className="text-[#F6F7F9] font-bold  mr-[10px] bg-[#00BB00] border-[#FFFFFF] border-[2px] p-[5px] text-right">
                     <li className="hover:bg-[#62FF86] border-b-[2px] border-[#3C3C3B] ">
-                      {user.email}
+                      {account.email}
                     </li>
                     <li className="hover:bg-[#62FF86]  p-[5px]">
                       Edit Profile
@@ -64,9 +70,9 @@ const Navbar = () => {
           >
             Read
           </Link>
-          {user && user.auth === true ? (
+          {account && account.auth === true ? (
             <Link
-              onClick={handleLogut}
+              onClick={handleLogout}
               className="bg-transparent border-[2px] border-[#212428] rounded-[5px] py-[6px] px-[12px] border-solid ml-[10px]"
             >
               Logout

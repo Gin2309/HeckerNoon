@@ -1,25 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginApi } from "../service/UserSevices";
+import { handleLoginRedux } from "../redux/action/userAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
-import { UserContext } from "../context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const { login } = useContext(UserContext);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loadApi, setLoadApi] = useState(false);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   let token = localStorage.getItem("token");
-  //   if (token) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  const isLoading = useSelector((state) => state.isLoading);
+  const account = useSelector((state) => state.account);
+
+  useEffect(() => {
+    if (account && account.auth === true) {
+      navigate("/");
+    }
+  }, [account]);
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -27,28 +29,7 @@ const Login = () => {
       return;
     }
 
-    try {
-      setLoadApi(true);
-      let res = await loginApi(email, password);
-      if (res && res.token) {
-        login(email, res.token);
-        // localStorage.setItem("email", JSON.stringify(res.email));
-        navigate("/");
-      } else {
-        if (res && res.status === 400) {
-          // Hiển thị cảnh báo từ phản hồi nếu có
-          alert(res.data.error);
-        } else {
-          // Hiển thị cảnh báo mặc định nếu không có phản hồi hoặc không có thông tin cụ thể
-          alert("Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại sau.");
-        }
-      }
-    } catch (error) {
-      // Xử lý lỗi từ phía client
-      console.error("Lỗi khi đăng nhập:", error);
-      alert("Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại sau.");
-    }
-    setLoadApi(false);
+    dispatch(handleLoginRedux(email, password));
   };
 
   return (
@@ -83,11 +64,10 @@ const Login = () => {
                 I don't have a HackerNoon account yet
               </Link>
               <Link
-                // disabled={loadApi}
                 onClick={() => handleLogin()}
                 className="text-[#00FF00] bg-[#3C3C3B] text-center py-[8px] px-[30px] rounded-md mt-[15px] font-bold"
               >
-                {loadApi && (
+                {isLoading && (
                   <FontAwesomeIcon
                     icon={faSpinner}
                     className="fa-spin-pulse fa-spin-reverse"
